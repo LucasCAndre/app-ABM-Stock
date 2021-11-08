@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function Form({id}) {
   const [quantity, setQuantity] = useState('');
@@ -6,6 +6,24 @@ function Form({id}) {
   const [product, setProduct] = useState('');
   const [client, setClient] = useState('');
   const [status, setStatus] = useState('active');
+
+  async function setEditForm(id) {
+    const myFetch = await fetch(`https://crudcrud.com/api/4ea59a8c967b4c3dbf273e5a1b0c3377/stock/${id}`, {
+      method: 'GET',
+    });
+    const myProduct = await myFetch.json();
+    setQuantity(myProduct.quantity);
+    setPrice(myProduct.price);
+    setProduct(myProduct.product);
+    setClient(myProduct.client);
+    setStatus(myProduct.status);
+  }
+
+  useEffect(() => {
+    if (id !== undefined) {
+      setEditForm(id);
+    }
+  }, [id]);
 
   async function handleCreate() {
     const data = {
@@ -106,7 +124,7 @@ function Form({id}) {
           onChange={ (e) => setClient(e.target.value) }
           id="client"
           type="number"
-          placeholder="qtty"
+          placeholder="client"
           required
         />
       </label>

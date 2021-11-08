@@ -1,12 +1,10 @@
 import './App.css';
-import Form from './components/Form';
-import StockList from './components/StockList';
+import Stock from './pages/Stock';
 
 function App() {
   return (
     <div className="App">
-     <Form />
-     <StockList />
+      <Stock />
     </div>
   );
 }

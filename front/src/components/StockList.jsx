@@ -6,10 +6,10 @@ function StockList({setId}) {
 
   async function getList() {
     const listing = await fetch('https://crudcrud.com/api/4ea59a8c967b4c3dbf273e5a1b0c3377/stock', {
-      method: 'GET'
+      method: 'GET',
     });
-    const list = await listing.json();
-    setStockList(list);
+      const list = await listing.json();
+      setStockList(list);
   }
 
   function handleEditBtn(e) {
@@ -44,9 +44,11 @@ function StockList({setId}) {
   return (
     <div>
       <select onChange={ (e) => setOrderBy(e.target.value) }>
-        <option value="description">Descrição</option>
-        <option value="createdAt">Data de criação</option>
-        <option value="status">Estatus</option>
+        <option value="quantity">Quantity</option>
+        <option value="price">Price</option>
+        <option value="product">Product</option>
+        <option value="client">Client</option>
+        <option value="status">Status</option>
       </select>
       <button onClick={ orderList }>Ordenar</button>
       <ul>
