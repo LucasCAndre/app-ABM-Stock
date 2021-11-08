@@ -8,9 +8,10 @@ function Form({id}) {
   const [status, setStatus] = useState('active');
 
   async function setEditForm(id) {
-    const myProduct = await fetch(`https://crudcrud.com/api/4ea59a8c967b4c3dbf273e5a1b0c3377/stock/${id}`, {
+    const myFetch = await fetch(`https://crudcrud.com/api/4ea59a8c967b4c3dbf273e5a1b0c3377/stock/${id}`, {
       method: 'GET',
     });
+    const myProduct = await myFetch.json();
     setQuantity(myProduct.quantity);
     setPrice(myProduct.price);
     setProduct(myProduct.product);

@@ -6,10 +6,14 @@ function StockList({setId}) {
 
   async function getList() {
     const listing = await fetch('https://crudcrud.com/api/4ea59a8c967b4c3dbf273e5a1b0c3377/stock', {
-      method: 'GET'
+      method: 'GET',
     });
-    const list = await listing.json();
-    setStockList(list);
+    try {
+      const list = await listing.json();
+      setStockList(list);
+    } catch(e) {
+      console.log(e);
+    }
   }
 
   function handleEditBtn(e) {
