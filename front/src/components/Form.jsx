@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { URL } from '../utils';
 
 function Form({id}) {
   const [quantity, setQuantity] = useState('');
@@ -8,7 +9,7 @@ function Form({id}) {
   const [status, setStatus] = useState('active');
 
   async function setEditForm(id) {
-    const myFetch = await fetch(`https://crudcrud.com/api/4ea59a8c967b4c3dbf273e5a1b0c3377/stock/${id}`, {
+    const myFetch = await fetch(`${URL}${id}`, {
       method: 'GET',
     });
     const myProduct = await myFetch.json();
@@ -33,7 +34,7 @@ function Form({id}) {
       client,
       status,
     };
-    await fetch('https://crudcrud.com/api/4ea59a8c967b4c3dbf273e5a1b0c3377/stock', {
+    await fetch(URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -51,7 +52,7 @@ function Form({id}) {
       client,
       status,
     };
-    await fetch(`https://crudcrud.com/api/4ea59a8c967b4c3dbf273e5a1b0c3377/stock/${id}`, {
+    await fetch(`${URL}${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'

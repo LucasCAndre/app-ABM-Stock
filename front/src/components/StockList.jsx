@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { URL } from "../utils";
 
 function StockList({setId}) {
   const [stockList, setStockList] = useState([]);
   const [orderBy, setOrderBy] = useState('description');
 
   async function getList() {
-    const listing = await fetch('https://crudcrud.com/api/4ea59a8c967b4c3dbf273e5a1b0c3377/stock', {
+    const listing = await fetch(URL, {
       method: 'GET',
     });
       const list = await listing.json();
@@ -18,7 +19,7 @@ function StockList({setId}) {
 
   async function handleDeleteBtn(e) {
     const { id } = e.target;
-    await fetch(`https://crudcrud.com/api/4ea59a8c967b4c3dbf273e5a1b0c3377/stock/${id}`, {
+    await fetch(`${URL}${id}`, {
       method: 'DELETE',
     });
     window.location.reload();
